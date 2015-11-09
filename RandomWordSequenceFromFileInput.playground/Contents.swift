@@ -111,23 +111,42 @@ Goal #1
 
 My algorithm
 ------------
-
+use the same concept as the letter markov chain to determine probablility where we count the total and also count how many of each word shows up.
 
 My assumptions
 --------------
-
+we will get gibberish because there is no sentence structure.
 
 Probable data structures
 ------------------------
-
+for in loop / arrays / conditionals
 
 */
 
 // Implement Goal #1 below...
 
+words.count
+
+var wordCounts = [String: Int]()
+
+for word in words
+{
+    if wordCounts[word] == nil
+    {
+        wordCounts[word] = 1
+    } else {
+        wordCounts[word]! = wordCounts[word]! + 1
+    }
+}
+
+var percentage = [String: Float]()
 
 
-/*: 
+for (word, counts) in wordCounts
+{
+    
+}
+/*:
 
 ## Goal 2
 
@@ -168,8 +187,6 @@ My algorithm
 
 My assumptions
 --------------
-
-
 
 */
 
