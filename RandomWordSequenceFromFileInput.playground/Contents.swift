@@ -229,6 +229,122 @@ i will have to find an interesting way to do this.
 
 // Implement Goal #2 below...
 
+//var totalWordCount = Float(words.count)
+//
+//var blankWords = Float(0.0)
+//
+//var wordCounts = [String: Int]()
+//
+//for word in words
+//{
+//    if word.characters.count > 0
+//    {
+//        if wordCounts[word] == nil
+//        {
+//            wordCounts[word] = 1
+//        } else {
+//            wordCounts[word]! = wordCounts[word]! + 1
+//        }
+//    } else
+//    {
+//        blankWords += 1
+//    }
+//}
+//
+////takes all the blanks that we do not count and subracts them from the total number of words counted so it does ont sqew the res of the code
+//totalWordCount = totalWordCount - blankWords
+//
+//var percentage = [String: Float]()
+//
+//for (word, counts) in wordCounts
+//{
+//    percentage[word] = Float(counts) / totalWordCount * 100
+//}
+//
+//wordCounts
+//
+//percentage
+//
+//var outputString = ""
+//
+//var randomValue: Float = 0.0
+//
+//var probabilities = 0.0
+//
+//var upperValue: Float = 0.0
+//
+//var period = 0
+//
+//for (word, probabilities) in percentage
+//{
+//    randomValue = Float(arc4random_uniform(1000)) / 10
+//    
+//    upperValue += percentage[word]!
+//    
+//    percentage[word]
+//    
+//    if (randomValue < upperValue && period < 1)                 //when there is a period this will not run and therefore not add any more words
+//    {
+//        outputString += String(word) + " "
+//        
+//                                                                //this is to see if i can check the last character of the word each time
+//        if word[word.endIndex.predecessor()] == "."
+//        {
+//            print ("it was a period")
+//            period = 1
+//        }
+//        upperValue = 0                                          //restarting upper value after each word is selected
+//    }
+//}
+//
+//print (outputString)
+
+/*:
+
+## Goal 3
+
+### Extension
+
+Use the data structures you created for Goal #1 above.
+
+### Output Specifications
+
+Generate a random output sentence that has at least 8 words in it, but no less. The sentence should end with a word that includes a period as it's final character.
+
+### Algorithm
+
+Below, write out an algorithm that will accomplish this task.
+
+This time, include the following sections:
+
+* Algorithm (point form)
+* Assumptions (if any)
+
+### Implementation
+
+Implement your algorithm further down, below where you typed out your algorithm.
+
+Remember to save and commit your work to GitHub when you have completed a part of the solution that you don't want to lose.  Definitely commit your work when the algorithm is fully implemented.
+*/
+//
+/*
+
+Goal #3
+=======
+
+My algorithm
+------------
+should just be able to add the requirement into an if statement
+
+My assumptions
+--------------
+
+
+*/
+
+
+// Implement Goal #3 below...
+
 var totalWordCount = Float(words.count)
 
 var blankWords = Float(0.0)
@@ -275,6 +391,8 @@ var upperValue: Float = 0.0
 
 var period = 0
 
+var wordsInOutput = 0
+
 for (word, probabilities) in percentage
 {
     randomValue = Float(arc4random_uniform(1000)) / 10
@@ -283,66 +401,27 @@ for (word, probabilities) in percentage
     
     percentage[word]
     
-    if (randomValue < upperValue && period < 1)                 //when there is a period this will not run and therefore not add any more words
+    if (randomValue < upperValue && period < 1)    //when there is a period this will not run and therefore not add any more words
     {
         outputString += String(word) + " "
         
-                                                                //this is to see if i can check the last character of the word each time
+        wordsInOutput++
+        
+        //this is to see if i can check the last character of the word each time
         if word[word.endIndex.predecessor()] == "."
         {
-            print ("it was a period")
-            period = 1
+            if (wordsInOutput >= 8)
+            {
+                period = 1
+                print ("there is a period and there are more than 8 words")
+            } else {
+                print ("there is a period but there are less than 8 words")
+            }
         }
         upperValue = 0                                          //restarting upper value after each word is selected
     }
 }
 
 print (outputString)
-
-/*:
-
-## Goal 3
-
-### Extension
-
-Use the data structures you created for Goal #1 above.
-
-### Output Specifications
-
-Generate a random output sentence that has at least 8 words in it, but no less. The sentence should end with a word that includes a period as it's final character.
-
-### Algorithm
-
-Below, write out an algorithm that will accomplish this task.
-
-This time, include the following sections:
-
-* Algorithm (point form)
-* Assumptions (if any)
-
-### Implementation
-
-Implement your algorithm further down, below where you typed out your algorithm.
-
-Remember to save and commit your work to GitHub when you have completed a part of the solution that you don't want to lose.  Definitely commit your work when the algorithm is fully implemented.
-*/
-//
-/*
-
-Goal #3
-=======
-
-My algorithm
-------------
-
-
-My assumptions
---------------
-
-
-*/
-
-
-// Implement Goal #3 below...
 
 
