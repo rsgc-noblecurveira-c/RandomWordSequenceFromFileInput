@@ -273,28 +273,28 @@ var probabilities = 0.0
 
 var upperValue: Float = 0.0
 
-for _ in 1...20
+var period = 0
+
+for (word, probabilities) in percentage
 {
     randomValue = Float(arc4random_uniform(1000)) / 10
-    for (word, probabilities) in percentage
+    
+    upperValue += percentage[word]!
+    
+    percentage[word]
+    
+    if (randomValue < upperValue && period < 1)                 //when there is a period this will not run and therefore not add any more words
     {
-        upperValue += percentage[word]!
+        outputString += String(word) + " "
         
-        percentage[word]
-        
-        if (randomValue < upperValue)
+                                                                //this is to see if i can check the last character of the word each time
+        if word[word.endIndex.predecessor()] == "."
         {
-            outputString += String(word) + " "
-            
-            //this is to see if i can check the last character of the word each time
-            if word[word.endIndex.predecessor()] == "."
-            {
-                print ("it was a period")
-            }
-            break
+            print ("it was a period")
+            period = 1
         }
+        upperValue = 0                                          //restarting upper value after each word is selected
     }
-    upperValue = 0 //restarting upper value after each word is selected
 }
 
 print (outputString)
@@ -326,7 +326,7 @@ Implement your algorithm further down, below where you typed out your algorithm.
 
 Remember to save and commit your work to GitHub when you have completed a part of the solution that you don't want to lose.  Definitely commit your work when the algorithm is fully implemented.
 */
-
+//
 /*
 
 Goal #3
