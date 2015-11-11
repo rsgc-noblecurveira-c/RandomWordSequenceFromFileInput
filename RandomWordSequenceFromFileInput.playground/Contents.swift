@@ -133,11 +133,14 @@ var wordCounts = [String: Int]()
 
 for word in words
 {
-    if wordCounts[word] == nil
+    if word.characters.count > 0
     {
+        if wordCounts[word] == nil
+        {
         wordCounts[word] = 1
-    } else {
-        wordCounts[word]! = wordCounts[word]! + 1
+        } else {
+            wordCounts[word]! = wordCounts[word]! + 1
+        }
     }
 }
 
@@ -154,7 +157,7 @@ percentage
 
 var outputString = ""
 
-var randomValue = Float(0.0)
+var randomValue: Float = 0.0
 
 var probabilities = 0.0
 
@@ -169,12 +172,13 @@ for _ in 1...20
         
         percentage[word]
         
-        if (randomValue > upperValue)
+        if (randomValue < upperValue)
         {
-            outputString += String(word)
+            outputString += String(word) + " "
             break
         }
     }
+    upperValue = 0 //restarting upper value after each word is selected
 }
 
 outputString
