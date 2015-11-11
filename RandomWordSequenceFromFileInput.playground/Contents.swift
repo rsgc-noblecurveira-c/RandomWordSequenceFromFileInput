@@ -125,63 +125,63 @@ for in loop / arrays / conditionals
 
 // Implement Goal #1 below...
 
-words.count
-
-var totalWordCount = Float(words.count)
-
-var wordCounts = [String: Int]()
-
-for word in words
-{
-    if word.characters.count > 0
-    {
-        if wordCounts[word] == nil
-        {
-        wordCounts[word] = 1
-        } else {
-            wordCounts[word]! = wordCounts[word]! + 1
-        }
-    }
-}
-
-var percentage = [String: Float]()
-
-for (word, counts) in wordCounts
-{
-    percentage[word] = Float(counts) / totalWordCount * 100
-}
-
-wordCounts
-
-percentage
-
-var outputString = ""
-
-var randomValue: Float = 0.0
-
-var probabilities = 0.0
-
-var upperValue: Float = 0.0
-
-for _ in 1...20
-{
-    randomValue = Float(arc4random_uniform(1000)) / 10
-    for (word, probabilities) in percentage
-    {
-        upperValue += percentage[word]!
-        
-        percentage[word]
-        
-        if (randomValue < upperValue)
-        {
-            outputString += String(word) + " "
-            break
-        }
-    }
-    upperValue = 0 //restarting upper value after each word is selected
-}
-
-outputString
+//words.count
+//
+//var totalWordCount = Float(words.count)
+//
+//var wordCounts = [String: Int]()
+//
+//for word in words
+//{
+//    if word.characters.count > 0
+//    {
+//        if wordCounts[word] == nil
+//        {
+//        wordCounts[word] = 1
+//        } else {
+//            wordCounts[word]! = wordCounts[word]! + 1
+//        }
+//    }
+//}
+//
+//var percentage = [String: Float]()
+//
+//for (word, counts) in wordCounts
+//{
+//    percentage[word] = Float(counts) / totalWordCount * 100
+//}
+//
+//wordCounts
+//
+//percentage
+//
+//var outputString = ""
+//
+//var randomValue: Float = 0.0
+//
+//var probabilities = 0.0
+//
+//var upperValue: Float = 0.0
+//
+//for _ in 1...20
+//{
+//    randomValue = Float(arc4random_uniform(1000)) / 10
+//    for (word, probabilities) in percentage
+//    {
+//        upperValue += percentage[word]!
+//        
+//        percentage[word]
+//        
+//        if (randomValue < upperValue)
+//        {
+//            outputString += String(word) + " "
+//            break
+//        }
+//    }
+//    upperValue = 0 //restarting upper value after each word is selected
+//}
+//
+//print (outputString)
 /*:
 
 ## Goal 2
@@ -219,16 +219,85 @@ Goal #2
 
 My algorithm
 ------------
-
+check each word until a . shows up then end the program.
 
 My assumptions
 --------------
+i will have to find an interesting way to do this.
 
 */
 
-
 // Implement Goal #2 below...
 
+var totalWordCount = Float(words.count)
+
+var blankWords = Float(0.0)
+
+var wordCounts = [String: Int]()
+
+for word in words
+{
+    if word.characters.count > 0
+    {
+        if wordCounts[word] == nil
+        {
+            wordCounts[word] = 1
+        } else {
+            wordCounts[word]! = wordCounts[word]! + 1
+        }
+    } else
+    {
+        blankWords += 1
+    }
+}
+
+//takes all the blanks that we do not count and subracts them from the total number of words counted so it does ont sqew the res of the code
+totalWordCount = totalWordCount - blankWords
+
+var percentage = [String: Float]()
+
+for (word, counts) in wordCounts
+{
+    percentage[word] = Float(counts) / totalWordCount * 100
+}
+
+wordCounts
+
+percentage
+
+var outputString = ""
+
+var randomValue: Float = 0.0
+
+var probabilities = 0.0
+
+var upperValue: Float = 0.0
+
+for _ in 1...20
+{
+    randomValue = Float(arc4random_uniform(1000)) / 10
+    for (word, probabilities) in percentage
+    {
+        upperValue += percentage[word]!
+        
+        percentage[word]
+        
+        if (randomValue < upperValue)
+        {
+            outputString += String(word) + " "
+            
+            //this is to see if i can check the last character of the word each time
+            if word[word.endIndex.predecessor()] == "."
+            {
+                print ("it was a period")
+            }
+            break
+        }
+    }
+    upperValue = 0 //restarting upper value after each word is selected
+}
+
+print (outputString)
 
 /*:
 
