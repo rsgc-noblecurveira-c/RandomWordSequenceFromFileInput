@@ -347,7 +347,7 @@ My assumptions
 
 var totalWordCount = Float(words.count)
 
-var blankWords = Float(0.0)
+var blankWords = Float(0)
 
 var wordCounts = [String: Int]()
 
@@ -383,13 +383,11 @@ percentage
 
 var outputString = ""
 
-var randomValue: Float = 0.0
+var randomValue = Float(0)
 
-var probabilities = 0.0
+var upperValue = Float(0)
 
-var upperValue: Float = 0.0
-
-var period = 0
+var period = false
 
 var wordsInOutput = 0
 
@@ -397,31 +395,27 @@ for (word, probabilities) in percentage
 {
     randomValue = Float(arc4random_uniform(1000)) / 10
     
-    upperValue += percentage[word]!
+    upperValue += probabilities
     
-    percentage[word]
+    probabilities
     
-    if (randomValue < upperValue && period < 1)    //when there is a period this will not run and therefore not add any more words
+    if (randomValue < upperValue && period == false)    //when there is a period this will not run and therefore not add any more words
     {
         outputString += String(word) + " "
         
         wordsInOutput++
         
         //this is to see if i can check the last character of the word each time
-        if word[word.endIndex.predecessor()] == "."
+        if word[word.endIndex.predecessor()] == "." && wordsInOutput >= 8
         {
-            if (wordsInOutput >= 8)
-            {
-                period = 1
-                print ("there is a period and there are more than 8 words")
-            } else {
-                print ("there is a period but there are less than 8 words")
-            }
+            period = true
+            print ("there is a period and there are more than 8 words")
+        } else {
+            print ("there are less than 8 words")
         }
-        upperValue = 0                                          //restarting upper value after each word is selected
+        
+        upperValue = 0                                   //restarting upper value after each word is selected
     }
 }
 
 print (outputString)
-
-
